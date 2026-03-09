@@ -1,6 +1,14 @@
 import { Link } from "@tanstack/react-router";
-import { CheckCircle, ChevronDown, Shield, Star, Zap } from "lucide-react";
+import {
+  CheckCircle,
+  ChevronDown,
+  MapPin,
+  Shield,
+  Star,
+  Zap,
+} from "lucide-react";
 import { useState } from "react";
+import { suburbs } from "../data/suburbData";
 import { useMetaTags } from "../hooks/useMetaTags";
 
 const faqs = [
@@ -476,8 +484,56 @@ export function HomePage() {
         </div>
       </section>
 
+      {/* Suburbs We Serve */}
+      <section
+        className="py-16 bg-white"
+        aria-labelledby="suburbs-heading"
+        data-ocid="suburbs.grid.section"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2
+              id="suburbs-heading"
+              className="font-display text-3xl md:text-4xl font-bold text-[#0f172a] mb-4"
+            >
+              Bond Cleaning Across Gold Coast \u2014 Suburbs We Serve
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              We provide professional bond cleaning and vacate cleaning across
+              all major Gold Coast suburbs. Click your suburb to learn more.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {suburbs.map((suburb, i) => (
+              <Link
+                key={suburb.slug}
+                to="/suburbs/$suburbSlug"
+                params={{ suburbSlug: suburb.slug }}
+                data-ocid={`suburbs.card.${i + 1}`}
+                className="group bg-[#0f172a] hover:bg-[#d4a017] border border-[#0f172a]/10 rounded-2xl p-5 transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
+              >
+                <div className="flex items-start gap-3">
+                  <MapPin
+                    size={18}
+                    className="text-[#d4a017] group-hover:text-white flex-shrink-0 mt-0.5 transition-colors"
+                  />
+                  <div>
+                    <p className="font-bold text-white group-hover:text-white text-sm leading-tight mb-1">
+                      {suburb.name}
+                    </p>
+                    <p className="text-white/60 group-hover:text-white/80 text-xs leading-tight">
+                      Vacate cleaning in {suburb.name}
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Bond Refund section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>

@@ -1,33 +1,33 @@
 # Tru Gold Coast Bond Cleaners
 
 ## Current State
-New project — no existing pages or components.
+The site has 4 pages: Home, Services, About, Contact. The HomePage has hero, trust bar, why choose us, services preview, bond refund section, FAQ, and CTA. No suburb-specific pages exist.
 
 ## Requested Changes (Diff)
 
 ### Add
-- Full multi-page website for Tru Gold Coast Bond Cleaners (vacate cleaning, Gold Coast)
-- Pages: Home, Services, About, Contact, FAQ
-- SEO-optimised content (~3000 words, Australian English, active voice, skimmable, readable by a 10-year-old)
-- Each service page: ~400 words
-- Branded images with alt text on every page
-- Meta tags, page titles, Open Graph, and Google site verification tag
-- FAQ section on home page (12 questions including competitor list at Q5)
-- Contact form using mailto: link (opens customer's email app pre-filled to humptydumptybondcleaning@gmail.com — email NOT shown on site)
-- WhatsApp contact button: 0488841883
-- Google site verification meta tag in <head>
+- 12 suburb pages (one per major Gold Coast suburb) at routes `/suburbs/:suburb`
+- Each suburb page includes:
+  - Unique `<title>`, meta description, and keywords meta tag for SEO
+  - H1 with suburb name + bond cleaning keyword
+  - ~400 words of simple, SEO-optimised content explaining bond cleaning in that suburb (written for a 10-year-old)
+  - At least 1 image with descriptive alt text
+  - CTA buttons (Get a Free Quote, WhatsApp)
+- A "Suburbs We Serve" section on the HomePage linking to each suburb page
+- A `useMetaTags` hook update (already exists) used on each suburb page
+
+Suburbs: Surfers Paradise, Broadbeach, Southport, Robina, Burleigh Heads, Varsity Lakes, Nerang, Helensvale, Coomera, Labrador, Miami, Palm Beach
 
 ### Modify
-N/A
+- `App.tsx`: add 12 new suburb routes
+- `HomePage.tsx`: add "Suburbs We Serve" grid section with links to each suburb page
 
 ### Remove
-N/A
+- Nothing removed
 
 ## Implementation Plan
-1. Generate branded hero and service images
-2. Build React frontend with React Router pages: Home, Services, About, Contact
-3. Embed SEO meta tags via react-helmet or direct index.html edits
-4. Add FAQ accordion on Home page
-5. Add contact form with mailto: submission
-6. Add WhatsApp floating button
-7. Validate and deploy
+1. Generate 3 suburb-themed cleaning images (reused across pages)
+2. Create `SuburbPage.tsx` — a single component that accepts suburb data as props/params
+3. Create `suburbData.ts` — data file with 400-word content, meta tags, and image per suburb
+4. Update `App.tsx` with 12 suburb routes
+5. Update `HomePage.tsx` with a new "Suburbs We Serve" section linking to all suburb pages
